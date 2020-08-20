@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="'over'"
+      [opened]="false">
+    <mat-toolbar><span style="margin: auto;">Menu</span></mat-toolbar>
+    <mat-divider style="margin-top: 10px;"></mat-divider>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let menu of menuList" (click)="loadPage(menu.title);drawer.close()">
+        <mat-icon>{{menu.icon}}</mat-icon>
+        <span style="margin-left: 10px;">{{menu.title}}</span>
+        <mat-divider style="margin-top: 5px;"></mat-divider>
+      </a>  
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>newsAppAdmin</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
